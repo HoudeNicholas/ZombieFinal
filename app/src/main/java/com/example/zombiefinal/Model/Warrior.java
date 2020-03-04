@@ -1,5 +1,7 @@
 package com.example.zombiefinal.Model;
 
+import static com.example.zombiefinal.View.MainActivity.sword;
+
 public class Warrior extends Player {
 
     @Override
@@ -16,6 +18,7 @@ public class Warrior extends Player {
         setWeapon(weapon);
         this.currentHealth = maxHealth;
         this.actions = 3;
+        setWeapon(sword);
     }
 
 }

@@ -14,6 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public Weapon sword = new Weapon(2, 6, 1);
-    public Weapon pistol = new Weapon(1, 10, 3);
+    public static Weapon sword = new Weapon(2, 6, 1);
+    public static Weapon pistol = new Weapon(1, 10, 3);
 }
