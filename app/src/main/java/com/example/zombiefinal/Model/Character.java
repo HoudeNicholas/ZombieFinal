@@ -4,6 +4,10 @@ public abstract class Character {
     protected int maxHealth;
     protected int currentHealth;
     protected int actions;
+    protected int maxActions;
+    protected Weapon weapon;
+
+    public abstract void setWeapon();
 
     public abstract void setMaxHealth();
 

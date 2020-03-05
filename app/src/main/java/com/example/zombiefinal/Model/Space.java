@@ -10,4 +10,5 @@ public class Space {
     public void setSpot(Character character){
         this.spot = character;
     }
+
 }

@@ -9,14 +9,18 @@ public class Warrior extends Player {
         this.maxHealth = 25;
     }
 
+    @Override
+    public void setWeapon(){}
+
     public void setWeapon(Weapon weapon){
         this.weapon = weapon;
     }
 
-    public Warrior(Weapon weapon){
+    public Warrior(){
         setMaxHealth();
         setWeapon(weapon);
         this.currentHealth = maxHealth;
+        this.maxActions = 3;
         this.actions = 3;
         setWeapon(sword);
     }
