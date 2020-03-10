@@ -222,22 +222,4 @@ public class ZombieAI {
 
     }*/
 
-
-
-
-
-
-    public Zombie generateZombie(){
-        Random rand = new Random();
-        int itsTheInt = rand.nextInt(20)+1;
-
-        if(itsTheInt <= 10){
-            return new Walker();
-        }
-        else if(itsTheInt >= 17){
-            return new Tank();
-        } else {
-            return new Runner();
-        }
-    }
 }

@@ -20,6 +20,10 @@ public abstract class Character {
         return vertical;
     }
 
+    public int getCurrentHealth(){
+        return currentHealth;
+    }
+
     public void checkSpot(){
         for(int c = 0; c < array.length; c++){
             for(int i = 0; i < array[0].length; i++){
@@ -47,6 +51,13 @@ public abstract class Character {
 
     public abstract void setMaxHealth();
 
+    public void heal(int health){
+        currentHealth += health;
+        if(currentHealth > maxHealth){
+            currentHealth = maxHealth;
+        }
+    }
+
     public int getMaxHealth(){
         return maxHealth;
     }
@@ -65,5 +76,9 @@ public abstract class Character {
 
     public int getHealth(){
         return currentHealth;
+    }
+
+    public void refillActions(){
+        this.actions = maxActions;
     }
 }
