@@ -11,6 +11,7 @@ import com.example.zombiefinal.Model.Player;
 import java.util.Random;
 
 import static com.example.zombiefinal.Model.ArrayModel.array;
+import static com.example.zombiefinal.View.MainActivity.empty;
 import static com.example.zombiefinal.View.MainActivity.players;
 
 public class ZombieAI {
@@ -68,94 +69,55 @@ public class ZombieAI {
         try{
             if(array[horizontal + 1][vertical + 1].getSpot().getClass().getSuperclass().getSimpleName().equals("Player")){
                 return array[horizontal + 1][vertical + 1].getSpot();
-            } else {return null;}
-        } catch(IndexOutOfBoundsException ioob){}
+            }
+        } catch(NullPointerException npe){} catch(ArrayIndexOutOfBoundsException ioob){}
 
         try{
             if(array[horizontal + 1][vertical].getSpot().getClass().getSuperclass().getSimpleName().equals("Player")){
                 return array[horizontal + 1][vertical].getSpot();
-            } else {return null;}
-        } catch(IndexOutOfBoundsException ioob){}
+            }
+        } catch(NullPointerException npe){} catch(ArrayIndexOutOfBoundsException ioob){}
 
         try{
             if(array[horizontal + 1][vertical - 1].getSpot().getClass().getSuperclass().getSimpleName().equals("Player")){
                 return array[horizontal + 1][vertical - 1].getSpot();
-            } else {return null;}
-        } catch(IndexOutOfBoundsException ioob){}
+            }
+        } catch(NullPointerException npe){} catch(ArrayIndexOutOfBoundsException ioob){}
 
         try{
             if(array[horizontal][vertical - 1].getSpot().getClass().getSuperclass().getSimpleName().equals("Player")){
                 return array[horizontal][vertical - 1].getSpot();
-            } else {return null;}
-        } catch(IndexOutOfBoundsException ioob){}
+            }
+        } catch(NullPointerException npe){} catch(ArrayIndexOutOfBoundsException ioob){}
 
         try{
             if(array[horizontal - 1][vertical - 1].getSpot().getClass().getSuperclass().getSimpleName().equals("Player")){
                 return array[horizontal - 1][vertical - 1].getSpot();
-            } else {return null;}
-        } catch(IndexOutOfBoundsException ioob){}
+            }
+        } catch(NullPointerException npe){} catch(ArrayIndexOutOfBoundsException ioob){}
 
         try{
             if(array[horizontal - 1][vertical].getSpot().getClass().getSuperclass().getSimpleName().equals("Player")){
                 return array[horizontal - 1][vertical].getSpot();
-            } else {return null;}
-        } catch(IndexOutOfBoundsException ioob){}
+            }
+        } catch(NullPointerException npe){} catch(ArrayIndexOutOfBoundsException ioob){}
 
         try{
             if(array[horizontal - 1][vertical + 1].getSpot().getClass().getSuperclass().getSimpleName().equals("Player")){
                 return array[horizontal - 1][vertical + 1].getSpot();
-            } else {return null;}
-        } catch(IndexOutOfBoundsException ioob){}
+            }
+        } catch(NullPointerException npe){} catch(ArrayIndexOutOfBoundsException ioob){}
 
         try{
             if(array[horizontal][vertical + 1].getSpot().getClass().getSuperclass().getSimpleName().equals("Player")){
                 return array[horizontal][vertical + 1].getSpot();
-            } else {return null;}
-        } catch(IndexOutOfBoundsException ioob){}
+            }
+        } catch(NullPointerException npe){} catch(ArrayIndexOutOfBoundsException ioob){}
 
-        return null;
+        return empty;
     }
 
-    //Ints that show how far away in each direction a player is
-    public int checkDown(String[][] checkThisColumn, int zombiePositionHorizontal, int zombiePositionVertical){
 
-        if(checkThisColumn[zombiePositionHorizontal][zombiePositionVertical + 2] != null){
-            return 2;
-        }
-        else if(checkThisColumn[zombiePositionHorizontal][zombiePositionVertical + 3] != null){
-            return 3;
-        }
-        else if(checkThisColumn[zombiePositionHorizontal][zombiePositionVertical + 4] != null){
-            return 4;
-        }
-        else if(checkThisColumn[zombiePositionHorizontal][zombiePositionVertical + 5] != null){
-            return 5;
-        }
-        else if(checkThisColumn[zombiePositionHorizontal][zombiePositionVertical + 6] != null){
-            return 6;
-        }
-        else if(checkThisColumn[zombiePositionHorizontal][zombiePositionVertical + 7] != null){
-            return 7;
-        }
-        else if(checkThisColumn[zombiePositionHorizontal][zombiePositionVertical + 8] != null){
-            return 8;
-        } else {return 100;}
-    }
-
-    public int checkRightRow(String[][] checkRightRowOfZombie, int zombiePositionHorizontal, int zombiePositionVertical){
-        if(checkRightRowOfZombie[zombiePositionHorizontal+2][zombiePositionVertical] != null){
-            return 2;
-        }
-        else if(checkRightRowOfZombie[zombiePositionHorizontal+3][zombiePositionVertical] != null){
-            return 3;
-        }
-        else return 200;
-    }
-
-    public int checkLeftRow(String[][] checkLeftRowOfZombie, int zombiePositionHorizontal, int zombiePositionVertical){
-        //TODO
-        return 0;
-    }
 
     public void move(Zombie zombie){
         Random rand = new Random();
@@ -177,41 +139,45 @@ public class ZombieAI {
             }
         }
         if(c == 0){
-            if(nearest.getHorizontal() > zombie.getHorizontal() && array[zombie.getHorizontal() + 1][zombie.getVertical()].getSpot() == null){
-                array[zombie.getHorizontal() + 1][zombie.getVertical()].setSpot(zombie);
-                array[zombie.getHorizontal()][zombie.getVertical()].setSpot(null);
-            } else if (nearest.getHorizontal() < zombie.getHorizontal() && array[zombie.getHorizontal() - 1][zombie.getVertical()].getSpot() == null){
-                array[zombie.getHorizontal() - 1][zombie.getVertical()].setSpot(zombie);
-                array[zombie.getHorizontal()][zombie.getVertical()].setSpot(null);
+            if (zombie.getHorizontal() != 9) {
+                if (nearest.getHorizontal() > zombie.getHorizontal() && array[zombie.getHorizontal() + 1][zombie.getVertical()].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")) {
+                    array[zombie.getHorizontal() + 1][zombie.getVertical()].setSpot(zombie);
+                    array[zombie.getHorizontal()][zombie.getVertical()].setSpot(empty);
+                } else if (nearest.getHorizontal() < zombie.getHorizontal() && array[zombie.getHorizontal() - 1][zombie.getVertical()].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")) {
+                    array[zombie.getHorizontal() - 1][zombie.getVertical()].setSpot(zombie);
+                    array[zombie.getHorizontal()][zombie.getVertical()].setSpot(empty);
+                }
+            } else {
+                if (nearest.getHorizontal() < zombie.getHorizontal() && array[zombie.getHorizontal() - 1][zombie.getVertical()].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")) {
+                    array[zombie.getHorizontal() - 1][zombie.getVertical()].setSpot(zombie);
+                    array[zombie.getHorizontal()][zombie.getVertical()].setSpot(empty);
+                }
             }
 
         } else if (c == 1){
-            if(nearest.getVertical() > zombie.getVertical() && array[zombie.getHorizontal()][zombie.getVertical() + 1].getSpot() == null){
-                array[zombie.getHorizontal()][zombie.getVertical() + 1].setSpot(zombie);
-                array[zombie.getHorizontal()][zombie.getVertical()].setSpot(null);
-            } else if (nearest.getVertical() < zombie.getVertical() && array[zombie.getHorizontal()][zombie.getVertical() - 1].getSpot() == null){
-                array[zombie.getHorizontal() - 1][zombie.getVertical()].setSpot(zombie);
-                array[zombie.getHorizontal()][zombie.getVertical()].setSpot(null);
+            if(zombie.getVertical() != 0 && zombie.getVertical() != 4) {
+                if (nearest.getVertical() > zombie.getVertical() && array[zombie.getHorizontal()][zombie.getVertical() + 1].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")) {
+                    array[zombie.getHorizontal()][zombie.getVertical() + 1].setSpot(zombie);
+                    array[zombie.getHorizontal()][zombie.getVertical()].setSpot(empty);
+                } else if (nearest.getVertical() < zombie.getVertical() && array[zombie.getHorizontal()][zombie.getVertical() - 1].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")) {
+                    array[zombie.getHorizontal() - 1][zombie.getVertical()].setSpot(zombie);
+                    array[zombie.getHorizontal()][zombie.getVertical()].setSpot(empty);
+                }
+            } else if (zombie.getVertical() == 4){
+                if (nearest.getVertical() < zombie.getVertical() && array[zombie.getHorizontal()][zombie.getVertical() - 1].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")) {
+                    array[zombie.getHorizontal() - 1][zombie.getVertical()].setSpot(zombie);
+                    array[zombie.getHorizontal()][zombie.getVertical()].setSpot(empty);
+                }
+
+            } else if(zombie.getVertical() == 0){
+                if (nearest.getVertical() > zombie.getVertical() && array[zombie.getHorizontal()][zombie.getVertical() + 1].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")) {
+                    array[zombie.getHorizontal()][zombie.getVertical() + 1].setSpot(zombie);
+                    array[zombie.getHorizontal()][zombie.getVertical()].setSpot(empty);
+                }
             }
         }
 
     }
-
-    //When moving left or right, make sure to add the amount down the Zombie would have to move in addition to the amount left or right
-    public String[][] moveZombieDown(){
-        //TODO
-        return null;
-    }
-    public String[][] moveZombieLeft(){
-        //TODO
-        return null;
-    }
-    public String[][] moveZombieRight(){
-        //TODO
-        return null;
-    }
-
-
 
    /* public void actualZombieAI(String[][] theGameBoard, Zombie theZombieInQuestion, int zombiePositionHorizontal, int zombiePositionVertical){
 

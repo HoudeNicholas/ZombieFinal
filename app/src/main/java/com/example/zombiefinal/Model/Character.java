@@ -7,10 +7,25 @@ public abstract class Character {
     protected int currentHealth;
     protected int actions;
     protected int maxActions;
-    protected Weapon weapon;
+    protected int numSides;
+    protected int numDice;
+    protected int range;
+
 
     protected int horizontal;
     protected int vertical;
+
+    public int getNumSides() {
+        return numSides;
+    }
+
+    public int getNumDice() {
+        return numDice;
+    }
+
+    public int getRange() {
+        return range;
+    }
 
     public int getHorizontal(){
         return horizontal;
@@ -34,20 +49,6 @@ public abstract class Character {
             }
         }
     }
-
-    public Weapon getWeapon(){
-        return this.weapon;
-    }
-
-    public int getWeaponDice(){
-        return this.weapon.getNumDice();
-    }
-
-    public int getWeaponSides(){
-        return this.weapon.getNumSides();
-    }
-
-    public abstract void setWeapon();
 
     public abstract void setMaxHealth();
 

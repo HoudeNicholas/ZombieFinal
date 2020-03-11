@@ -7,20 +7,19 @@ import static com.example.zombiefinal.View.MainActivity.zombies;
 public class Runner extends Zombie {
 
     @Override
-    public void setWeapon() {
-        this.weapon = runnerClaw;
-    }
-
-    @Override
     public void setMaxHealth() {
         Roll roll = new Roll();
         this.maxHealth = roll.roll(1, 8);
+        if(maxHealth < 4){
+            maxHealth = 4;
+        }
     }
 
     public Runner(){
         setMaxHealth();
         this.currentHealth = maxHealth;
-        setWeapon();
+        this.numDice = 1;
+        this.numSides = 12;
         this.maxActions = 2;
         this.actions = maxActions;
         zombies.add(this);
