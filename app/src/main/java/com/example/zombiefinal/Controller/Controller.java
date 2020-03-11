@@ -45,6 +45,7 @@ public class Controller {
 
     public String zombieAttack(Zombie zombie, Character player){
         int damage = roll.roll(zombie.getNumDice(), zombie.getNumSides());
+        damage += (int)Math.floor(turn / 10);
         player.damage(damage);
 
         if(player.getHealth() < 0){

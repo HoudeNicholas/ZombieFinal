@@ -63,9 +63,10 @@
 
     <TextView
         android:id="@+id/log"
-        android:layout_width="129dp"
-        android:layout_height="203dp"
-        android:textSize="8sp"
+        android:layout_width="148dp"
+        android:layout_height="326dp"
+        android:text="Zombie Walker(ZW): 1 move per turn, low health and damage \nZombie Runner(ZR): 2 moves per turn, very low health, medium damage \nZombie Tank(ZT): 1 move per turn, high health and damage \nEvery 3 turns \nZombie max health increases by 1 \n Every 5 turns \n1 additional zombie spawns to a max of 5 \nChances of encountering Runner or Tank increases by 1/20 \nEvery 10 turns \nZombie damage increases by 1 "
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.004"
@@ -75,9 +76,9 @@
 
     <TextView
         android:id="@+id/scores"
-        android:layout_width="169dp"
-        android:layout_height="72dp"
-        android:text="Press start"
+        android:layout_width="289dp"
+        android:layout_height="94dp"
+        android:text="Press start \nClick a character to select or deselect, click a space to move (1 action), click another player with healer to heal(1 action), click zombie with others to attack(1 action)"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,8 +89,10 @@
 
     <TextView
         android:id="@+id/acts"
-        android:layout_width="121dp"
-        android:layout_height="217dp"
+        android:layout_width="130dp"
+        android:layout_height="283dp"
+        android:text="Brawler (BR): 1 attack range, high health and damage \nWarrior(WA): 2 attack range, medium health and damage \nRanger(RA): 4 attack range, medium damage low health \nSniper(SN): 6 attack range, high damage, very low health \nHealer(HE): 3 heal range, high healing, no damage, very low health"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.995"

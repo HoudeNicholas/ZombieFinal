@@ -14,6 +14,7 @@ import com.example.zombiefinal.Model.Empty;
 import com.example.zombiefinal.Model.Healer;
 import com.example.zombiefinal.Model.Player;
 import com.example.zombiefinal.Model.Ranger;
+import com.example.zombiefinal.Model.Sniper;
 import com.example.zombiefinal.Model.Space;
 import com.example.zombiefinal.Model.Warrior;
 import com.example.zombiefinal.Model.Weapon;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import static com.example.zombiefinal.Model.ArrayModel.array;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private TextView log;
     @Override
@@ -55,11 +57,12 @@ public class MainActivity extends AppCompatActivity {
     public static Weapon runnerClaw = new Weapon(1, 12, 1);
     public static Weapon tankClaw = new Weapon(2, 10, 1);
 
-    public static Warrior warrior = new Warrior();
-    public static Brawler brawler = new Brawler();
-    public static Ranger ranger = new Ranger();
-    public static Healer healer = new Healer();
+    public static Warrior warrior;
+    public static Brawler brawler;
+    public static Ranger ranger;
+    public static Healer healer;
     public static Empty empty = new Empty();
+    public static Sniper sniper;
 
     private Space selected = null;
 
@@ -112,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         }
         output();
         actionUpdate();
+
     }
 
     public void onStart(View v){
@@ -120,15 +124,23 @@ public class MainActivity extends AppCompatActivity {
                 array[c][i] = new Space();
             }
         }
+        log.setTextSize(8);
         zombies.removeAll(zombies);
 
         turn = 0;
         score = 0;
 
+        healer = new Healer();
+        ranger = new Ranger();
+        brawler = new Brawler();
+        warrior = new Warrior();
+        sniper = new Sniper();
+
         array[1][2].setSpot(healer);
         array[2][3].setSpot(ranger);
         array[2][1].setSpot(brawler);
         array[2][2].setSpot(warrior);
+        array[2][4].setSpot(sniper);
 
         if (array[9][2].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")) {
             array[9][2].setSpot(controller.generateZombie());
@@ -142,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
             array[9][4].setSpot(controller.generateZombie());
         }
 
+        log.setText("");
         instantiate();
         actionUpdate();
         enable();
@@ -354,20 +367,14 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (array[c][i].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")) {
                         buttons[c][i].setText("X");
-                    } else if (array[c][i].getSpot().getClass().getSimpleName().equalsIgnoreCase("ranger")) {
-                        buttons[c][i].setText("RA");
-                    } else if (array[c][i].getSpot().getClass().getSimpleName().equalsIgnoreCase("brawler")) {
-                        buttons[c][i].setText("BR");
-                    } else if (array[c][i].getSpot().getClass().getSimpleName().equalsIgnoreCase("healer")) {
-                        buttons[c][i].setText("HE");
-                    } else if (array[c][i].getSpot().getClass().getSimpleName().equalsIgnoreCase("warrior")) {
-                        buttons[c][i].setText("WA");
                     } else if (array[c][i].getSpot().getClass().getSimpleName().equalsIgnoreCase("walker")) {
                         buttons[c][i].setText("ZW");
                     } else if (array[c][i].getSpot().getClass().getSimpleName().equalsIgnoreCase("runner")) {
                         buttons[c][i].setText("ZR");
                     } else if (array[c][i].getSpot().getClass().getSimpleName().equalsIgnoreCase("tank")) {
                         buttons[c][i].setText("ZT");
+                    } else {
+                        buttons[c][i].setText(array[c][i].getSpot().getClass().getSimpleName().substring(0, 2));
                     }
                 } catch(NullPointerException npe){
                     buttons[c][i].setText("X");
@@ -529,8 +536,6 @@ public class MainActivity extends AppCompatActivity {
         Button save = findViewById(R.id.save);
         Button load = findViewById(R.id.load);
         Button pass = findViewById(R.id.pass);
-        save.setEnabled(true);
-        load.setEnabled(true);
         pass.setEnabled(true);
     }
 }
