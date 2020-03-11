@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         instantiate();
+        actionUpdate();
 
         output();
     }
