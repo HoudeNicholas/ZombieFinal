@@ -9,9 +9,9 @@ public class Runner extends Zombie {
     @Override
     public void setMaxHealth() {
         Roll roll = new Roll();
-        this.maxHealth = roll.roll(1, 8);
-        if(maxHealth < 4){
-            maxHealth = 4;
+        this.maxHealth = roll.roll(2, 8);
+        if(maxHealth < 8){
+            maxHealth = 8;
         }
     }
 

@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNext(View v){
+        selected = null;
         log.setText("");
         for(Player player : players){
             player.checkSpot();
@@ -120,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
                 array[c][i] = new Space();
             }
         }
-        array[1][1].setSpot(healer);
-        array[1][2].setSpot(ranger);
+        array[1][2].setSpot(healer);
+        array[2][3].setSpot(ranger);
         array[2][1].setSpot(brawler);
         array[2][2].setSpot(warrior);
 
@@ -377,8 +378,8 @@ public class MainActivity extends AppCompatActivity {
         TextView actions = findViewById(R.id.acts);
         actions.setText("");
         for(Player player : players){
-            actions.append(player.getClass().getSimpleName() + " actions: " + player.getActions() + "\n");
             actions.append(player.getClass().getSimpleName() + " hp: " + player.getCurrentHealth() + "\n");
+            actions.append(player.getClass().getSimpleName() + " actions: " + player.getActions() + "\n");
         }
         actions.append("Pass when finished");
 

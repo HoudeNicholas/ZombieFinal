@@ -8,9 +8,9 @@ public class Walker extends Zombie {
     @Override
     public void setMaxHealth() {
         Roll roll = new Roll();
-        this.maxHealth = roll.roll(2, 8);
-        if(this.maxHealth < 8){
-            maxHealth = 8;
+        this.maxHealth = roll.roll(2, 12);
+        if(this.maxHealth < 12){
+            maxHealth = 12;
         }
     }
 
