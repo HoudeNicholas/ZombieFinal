@@ -2,6 +2,7 @@ package com.example.zombiefinal.Model;
 
 import com.example.zombiefinal.Controller.Roll;
 import static com.example.zombiefinal.View.MainActivity.runnerClaw;
+import static com.example.zombiefinal.View.MainActivity.turn;
 import static com.example.zombiefinal.View.MainActivity.zombies;
 
 public class Runner extends Zombie {
@@ -13,6 +14,7 @@ public class Runner extends Zombie {
         if(maxHealth < 8){
             maxHealth = 8;
         }
+        this.maxHealth += (int)Math.floor(turn / 3);
     }
 
     public Runner(){

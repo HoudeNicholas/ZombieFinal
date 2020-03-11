@@ -17,6 +17,7 @@ public class Healer extends Player {
         setMaxHealth();
         this.maxHealth = 15;
         this.maxActions = 3;
+        this.actions = maxActions;
         this.currentHealth = maxHealth;
         players.add(this);
     }

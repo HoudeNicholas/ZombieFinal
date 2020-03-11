@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         log = findViewById(R.id.log);
-
     }
 
     public static ArrayList<Zombie> zombies = new ArrayList();
@@ -145,10 +144,9 @@ public class MainActivity extends AppCompatActivity {
 
         instantiate();
         actionUpdate();
-
+        enable();
         output();
     }
-
 
     public void on00(View v){
         clickStuff(0,0);
@@ -393,6 +391,11 @@ public class MainActivity extends AppCompatActivity {
         scores.setText("");
         scores.append("Current score: " + score + "\n");
         scores.append("Turn: " + turn);
+        try {
+            scores.append("\nSelected: " + selected.getSpot().getClass().getSimpleName());
+        } catch (NullPointerException np){
+            scores.append("\nSelected: None");
+        }
     }
 
     public void clickStuff(int h, int v){
@@ -405,6 +408,8 @@ public class MainActivity extends AppCompatActivity {
                 selected = array[h][v];
                 selected.getSpot().checkSpot();
             }
+            output();
+            actionUpdate();
 
             //If one is selected and is not the healer, and the clicked space contains a zombie and there are remaining actions, attack
         } else if (!(selected.getSpot().getClass().getSimpleName().equalsIgnoreCase("healer"))
@@ -426,6 +431,7 @@ public class MainActivity extends AppCompatActivity {
             //If selected contains the healer, heal
         } else if (selected.getSpot().getClass().getSimpleName().equalsIgnoreCase("healer")
                 && array[h][v].getSpot().getClass().getSuperclass().getSimpleName().equalsIgnoreCase("player")
+                && !(array[h][v].getSpot().getClass().getSimpleName().equalsIgnoreCase("healer"))
                 && selected.getSpot().getActions() > 0){
 
             //If the target is in range, heal
@@ -443,6 +449,8 @@ public class MainActivity extends AppCompatActivity {
             //If click on selected space, deselect
         } else if (selected == array[h][v]){
             selected = null;
+            output();
+            actionUpdate();
 
             //If selected space is empty and there is enough actions, move to it
         } else if (array[h][v].getSpot().getClass().getSimpleName().equalsIgnoreCase("empty")
@@ -510,5 +518,19 @@ public class MainActivity extends AppCompatActivity {
         buttons[9][2] = findViewById(R.id.b92);
         buttons[9][3] = findViewById(R.id.b93);
         buttons[9][4] = findViewById(R.id.b94);
+    }
+
+    public void enable(){
+        for(int c = 0; c < 10; c++){
+            for (int i = 0; i < 5; i++){
+                buttons[c][i].setEnabled(true);
+            }
+        }
+        Button save = findViewById(R.id.save);
+        Button load = findViewById(R.id.load);
+        Button pass = findViewById(R.id.pass);
+        save.setEnabled(true);
+        load.setEnabled(true);
+        pass.setEnabled(true);
     }
 }
