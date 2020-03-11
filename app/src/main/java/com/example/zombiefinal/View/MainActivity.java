@@ -121,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
                 array[c][i] = new Space();
             }
         }
+        zombies.removeAll(zombies);
+
+        turn = 0;
+        score = 0;
+
         array[1][2].setSpot(healer);
         array[2][3].setSpot(ranger);
         array[2][1].setSpot(brawler);

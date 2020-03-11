@@ -10,9 +10,9 @@ public class Tank extends Zombie {
     @Override
     public void setMaxHealth() {
         Roll roll = new Roll();
-        this.maxHealth = roll.roll(3, 10);
-        if(this.maxHealth < 15){
-            maxHealth = 15;
+        this.maxHealth = roll.roll(4, 10);
+        if(this.maxHealth < 20){
+            maxHealth = 20;
         }
     }
 
